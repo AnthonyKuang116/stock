@@ -21,15 +21,15 @@ import { withBuyStockData } from '../../hoc/withBuyStock';
 
 // export default BuyStockContainer;
 
-const BuyStock = ({handleAdd, handleSub, stockNum}) => {
+const BuyStock = (props) => {
   return (
     <section>
       <header>Buy</header>
       <h1>
         How Many Stock you want to buy!!!!
-        <button onClick={handleAdd}> + </button>
-        <span>{stockNum}</span>
-        <button onClick={handleSub}> - </button>
+        <button onClick={props.handleAdd}> + </button>
+        <span>{props.stockNum}</span>
+        <button onClick={props.handleSub}> - </button>
       </h1>
     </section>
   )

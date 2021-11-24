@@ -30,21 +30,23 @@ import { useState } from "react";
 
 
 
-const withBuyStockData = (WrappedComponent) => {
-  const [stockNum, setStockNum] = useState(0);
+export const withBuyStockData = (WrappedComponent) => {
+  return () => {
+    const [stockNum, setStockNum] = useState(0);
 
-  const handleAdd = () => {
-    setStockNum(stockNum + 1);
-  }
-
-  const handleSub = () => {
-    if(stockNum > 0){
-      setStockNum(stockNum - 1);
+    const handleAdd = () => {
+      setStockNum(stockNum + 1);
     }
+
+    const handleSub = () => {
+      if (stockNum > 0) {
+        setStockNum(stockNum - 1);
+      }
+    }
+    return(
+      <WrappedComponent {...{stockNum, handleAdd, handleSub}} />
+    )
   }
-  return (
-    <WrappedComponent {...{stockNum, handleAdd, handleSub}}/>
-  )
 }
 
 export default withBuyStockData;

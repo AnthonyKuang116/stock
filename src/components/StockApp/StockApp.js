@@ -1,7 +1,7 @@
 import React from 'react';
 import { useState } from "react";
-import { BuyStockContainer } from './BuyStock/BuyStock';
-import { StockCalCulatorContainer } from './StockCalCulator/StockCalCulator';
+import BuyStockContainer from './BuyStock/BuyStock';
+import StockCalCulatorContainer from './StockCalCulator/StockCalCulator';
 
 // class StockApp extends React.Component {
 //   state = {
