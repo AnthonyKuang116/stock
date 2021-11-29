@@ -1,50 +1,27 @@
 import React from 'react';
-import { useState } from "react";
-
-// export const withBuyStockData = (WrappedComponent) => {
-//   return class NewComponent extends React.Component {
-//     state = {
-//       stockNum: 0,
-//     };
-
-//     handleAdd = () => {
-//       this.setState({ stockNum: this.state.stockNum + 1 });
-//     };
-//     handleSub = () => {
-//       this.setState({
-//         stockNum: this.state.stockNum - 1 < 0 ? 0 : this.state.stockNum - 1,
-//       });
-//     };
-
-//     render() {
-//       return (
-//         <WrappedComponent
-//           stockNum={this.state.stockNum}
-//           handleAdd={this.handleAdd}
-//           handleSub={this.handleSub}
-//         ></WrappedComponent>
-//       );
-//     }
-//   };
-// };
-
-
+import { useSelector, useDispatch } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { actionCreators } from "../state/index"
 
 export const withBuyStockData = (WrappedComponent) => {
   return () => {
-    const [stockNum, setStockNum] = useState(0);
+    const stockNum = useSelector((state) => state.stock.stockNum);
+    const dispatch = useDispatch();
+    const {subtractStock, addStock, currentStockNumber} = bindActionCreators(actionCreators, dispatch)
 
     const handleAdd = () => {
-      setStockNum(stockNum + 1);
+      addStock(1);
+      console.log(stockNum)
     }
 
     const handleSub = () => {
-      if (stockNum > 0) {
-        setStockNum(stockNum - 1);
+      if(stockNum > 0){
+        subtractStock(1);
+        console.log(currentStock)
       }
     }
     return(
-      <WrappedComponent {...{stockNum, handleAdd, handleSub}} />
+      <WrappedComponent {...{stockNum, currentStockNumber, handleAdd, handleSub}} />
     )
   }
 }
